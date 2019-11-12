@@ -1,0 +1,119 @@
+{
+  "name": "patagoniahealth",
+  "version": "1.0.0",
+  "description": "Coding Exercise",
+  "main": "dist",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/app.js",
+    "build": "babel src -d dist --ignore '**/*.spec.js'",
+    "dev": "nodemon src/app.js --exec 'node --require dotenv/config --require @babel/register'"
+  },
+  "author": "Raghav Mathur",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime-corejs2": "~7.4.4",
+    "body-parser": "~1.19.0",
+    "debug": "~4.1.0",
+    "express": "~4.17.1",
+    "fast-json-patch": "~2.1.0",
+    "helmet": "~3.19.0",
+    "hpp": "~0.2.2",
+    "http-graceful-shutdown": "~2.3.1",
+    "http-status-codes": "~1.3.2",
+    "https": "^1.0.0",
+    "ipware": "~2.0.0",
+    "lodash": "~4.17.11",
+    "mongoose": "~5.4.14",
+    "mongoose-unique-validator": "~2.0.3",
+    "process": "^0.11.10",
+    "uuid4": "~1.1.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "~7.4.4",
+    "@babel/core": "~7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "~7.4.4",
+    "@babel/plugin-transform-runtime": "~7.4.4",
+    "@babel/preset-env": "~7.4.4",
+    "@babel/register": "~7.4.4",
+    "auditjs": "~3.1.1",
+    "babel-plugin-istanbul": "~5.1.2",
+    "chai": "~4.2.0",
+    "chai-http": "~4.2.0",
+    "dotenv": "~7.0.0",
+    "eslint": "~5.16.0",
+    "eslint-config-airbnb-base": "~13.1.0",
+    "eslint-plugin-import": "~2.17.2",
+    "jsdoc": "~3.5.5",
+    "mocha": "~6.1.4",
+    "nodemon": "~1.18.11",
+    "nyc": "~14.0.0",
+    "sinon": "~7.3.1",
+    "sinon-express-mock": "~2.2.0",
+    "snyk": "~1.151.1",
+    "supertest": "~4.0.2",
+    "@babel/polyfill": "~7.4.4"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "plugins": [
+      "no-unsafe-regex",
+      "optimize-regex"
+    ],
+    "rules": {
+      "no-unsafe-regex/no-unsafe-regex": 2,
+      "optimize-regex/optimize-regex": "warn",
+      "no-control-regex": "error",
+      "no-console": "error",
+      "no-warning-comments": "error",
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true
+        }
+      ]
+    }
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "**/*.spec.js",
+      "dist/*"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "istanbul"
+      ],
+      [
+        "@babel/plugin-proposal-object-rest-spread"
+      ],
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": 2,
+          "regenerator": true
+        }
+      ]
+    ]
+  },
+  "nyc": {
+    "all": true,
+    "require": [
+      "@babel/register"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "exclude": [
+      "**/*.spec.js"
+    ],
+    "include": [
+      "src/**/*.js"
+    ]
+  }
+}
