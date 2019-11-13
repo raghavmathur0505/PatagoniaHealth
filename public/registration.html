@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link href="css/prettyPhoto.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+  <script src="js/app-register.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+            <div class="navbar-brand">
+              <a href="index.html"><h1><span>Patagonia</span>Health</h1></a>
+            </div>
+          </div>
+
+          <div class="navbar-collapse collapse">
+            <div class="menu">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a href="index.html">Home</a></li>
+                <li role="presentation"><a href="#">About Us</a></li>
+                <li role="presentation"><a href="#">Services</a></li>
+                <li role="presentation"><a href="#">Portfolio</a></li>
+                <li role="presentation"><a href="#">Blog</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li>Register</li>
+      </div>
+    </div>
+  </div>
+
+  <div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3235.3471761485785!2d-78.81753798431149!3d35.815956830177896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89acf23d5bfe6e4b%3A0x59a8a0457e0dace0!2sPatagonia%20Health!5e0!3m2!1sen!2sus!4v1573613155285!5m2!1sen!2sus" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+
+  <section id="contact-page"  ng-app="app-register" ng-controller="registerController as vm">
+    <div class="container">
+      <div class="center">
+        <h2>Register</h2>
+        <p>Enter details to create a Physician Account.</p>
+      </div>
+      <div class="row contact-wrap">
+        <div class="status alert alert-success" style="display: none"></div>
+        <div class="col-md-6 col-md-offset-3">
+          <form action="" method="post" role="form" class="contactForm">
+            <div class="form-group">
+              <input ng-model= "vm.firstname" ng-change="vm.validateFirstName(vm.firstname)"  type="text" name="name" class="form-control" id="name" placeholder="First Name"  />
+              <span style="color: red" ng-model="vm.firstNameError">
+                 {{ vm.firstNameError }}
+              </span>
+            </div>
+            <div class="form-group">
+              <input ng-model= "vm.lastname" ng-change="vm.validateLastName(vm.lastname)" type="text" name="name" class="form-control" id="name" placeholder="Last Name" />
+              <span style="color: red" ng-model="vm.lastNameError">
+                 {{ vm.lastNameError }}
+              </span>
+            </div>
+            <div class="form-group">
+              <input ng-model= "vm.email" ng-change="vm.validateEmail(vm.email)" type="email" class="form-control" name="email" id="email" placeholder="Email" />
+              <span style="color: red" ng-model="vm.emailError">
+                 {{ vm.emailError }}
+              </span>
+            </div>
+            <div class="form-group">
+              <input ng-model= "vm.password" type="password" ng-change="vm.validatePassword1(vm.password)"  class="form-control" name="subject" id="subject" placeholder="Password" />
+              <span style="color: red"  ng-model="vm.password1Error">
+                 {{ vm.password1Error }}
+               </span>
+            </div>
+            <div class="form-group">
+              <input ng-model= "vm.password2" ng-change="vm.validatePassword2(vm.password2)" type="password" class="form-control" name="subject" id="subject" placeholder="Confirm Password" />
+              <span style="color: red" ng-model="vm.password2Error">
+                 {{ vm.password2Error }}
+               </span>
+            </div>
+            <div class="form-group">
+              <a ng-click="vm.Register()" style="float: center" class="btn btn-primary btn-lg" >Submit</a>
+              <a style="float: center" class="btn btn-primary btn-info btn-lg" href="index.html">Back</a>
+            </div>
+            <div class="form-group">
+              <span style="color: red" ng-model="vm.submitError">
+                 {{ vm.submitError }}
+               </span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--/.row-->
+    </div>
+    <!--/.container-->
+  </section>
+  <!--/#contact-page-->
+
+
+  <footer>
+    <div class="footer">
+      <div class="container">
+        <div class="social-icon">
+          <div class="col-md-4">
+            <ul class="social-network">
+              <li><a href="#" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#" class="gplus tool-tip" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#" class="linkedin tool-tip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#" class="ytube tool-tip" title="You Tube"><i class="fa fa-youtube-play"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+          <div class="copyright">
+            &copy; Patagonia Health. All Rights Reserved.
+            <div class="credits">
+              Designed by <a href="#">Raghav Mathur</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="pull-right">
+        <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery-migrate.min.js"></script>
+  <script src="js/jquery.prettyPhoto.js"></script>
+  <script src="js/jquery.isotope.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="contactform/contactform.js"></script>
+
+</body>
+
+</html>

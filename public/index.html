@@ -2,105 +2,299 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patagonia Health</title>
 
-  <title>Patagonia Health - Login</title>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link href="css/prettyPhoto.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
 
-  <!-- Custom fonts for this template-->
-  <link href="css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+  <link rel="stylesheet" href="assets/css/form-elements.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <!-- Custom styles for this page -->
-  <!-- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+  <!-- Favicon and touch icons -->
+  <link rel="shortcut icon" href="assets/ico/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <!-- GRAVITY -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Angular Material Library -->
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
 
   <script src="js/app-login.js"></script>
-
 </head>
 
-<body class="bg-gradient-primary">
-  <div class="container" ng-app="app-login" ng-controller="loginController as vm">
+<body>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+            <div class="navbar-brand">
+              <a href="index.html"><h1><span>Patagonia</span>Health</h1></a>
+            </div>
+          </div>
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
+          <div class="navbar-collapse collapse">
+            <div class="menu">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a href="#" class="active">Home</a></li>
+                <li role="presentation"><a href="#">About Us</a></li>
+                <li role="presentation"><a href="#">Solutions</a></li>
+                <li role="presentation"><a href="#">Technology</a></li>
+                <li role="presentation"><a href="#">Advantages</a></li>
+                <li role="presentation"><a href="#">Customers</a>
+                <li role="presentation"><a class="launch-modal" href="#" data-modal-id="modal-login">Login</a></li>
+                <li role="presentation"><a href="registration.html">Register</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-      <div class="col-xl-10 col-lg-12 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Physician!</h1>
-                  </div>
-                  <form class="user">
-                    <div class="form-group">
-                      <input ng-model="vm.email" ng-change="vm.validateEmail(vm.email)" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
-                      <span ng-model="vm.emailError">
-                         {{ vm.emailError }}
-                       </span>
-                    </div>
-                    <div class="form-group">
-                      <input ng-model="vm.password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                    </div>
-
-                    <div class="text-center">
-                      <a ng-click="vm.Login()"  class="btn btn-primary btn-user btn-block" style="color: white">
-                        Login
-                      </a>
-                    </div>
-
-                    <div class="col-sm-15 mb-7 mb-sm-0">
-                      <span ng-model="vm.submitError">
-                         {{ vm.submitError }}
-                       </span>
-                    </div>
-                    <hr>
-
-                  </form>
-
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
+  <section id="main-slider" class="no-margin">
+    <div class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active" style="background-image: url(images/slider/bg1.jpg)">
+          <div class="container">
+            <div class="row slide-margin">
+              <div class="col-sm-6">
+                <div class="carousel-content">
+                  <h2 class="animation animated-item-1">Welcome to<span> Patagonia Health</span></h2>
+                  <p class="animation animated-item-2">Patagonia Health is a healthcare supplier of a modern, cloud and apps-based Electronic Health Record (EHR) software...</p>
+                  <a class="btn-slide animation animated-item-3" href="#">Read More</a>
                 </div>
               </div>
+
+              <div class="col-sm-6 hidden-xs animation animated-item-4">
+                <div class="slider-img">
+                  <img src="images/slider/img3.png" class="img-responsive">
+                </div>
+              </div>
+
             </div>
+          </div>
+        </div>
+        <!--/.item-->
+      </div>
+      <!--/.carousel-inner-->
+    </div>
+    <!--/.carousel-->
+  </section>
+  <!--/#main-slider-->
+
+  <div class="feature">
+    <div class="container">
+      <div class="text-center">
+        <div class="col-md-3">
+          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <i class="fa fa-book"></i>
+            <h2>Public Health</h2>
+            <p>Patagonia Health’s feature-rich public health apps are specifically designed to support population health management…</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <i class="fa fa-laptop"></i>
+            <h2>Behavioral Health</h2>
+            <p>Our behavioral health ehr documents a wide range of services, including SA, DA, intensive in-home, day treatment…</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
+            <i class="fa fa-heart-o"></i>
+            <h2>Medical practices</h2>
+            <p>With Patagonia Health, users can easily configure the apps to meet the workflow in any medical practice. These tailored…</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="hi-icon-wrap hi-icon-effect wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms">
+            <i class="fa fa-cloud"></i>
+            <h2>App Based Solution</h2>
+            <p>With Patagonia Health’s apps-based software, users can customize and re-arrange the interface to fit their organization’s unique workflow.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <div class="about">
+    <div class="container">
+      <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <h2>About Us</h2>
+        <img src="images/6.jpg" class="img-responsive" />
+        <p> In mid-2015 our company earned a spot on Inc. Magazine’s Inc. 5000 fastest growing companies list (#269), we won the bronze Stevie® Award for Customer Service Success in both 2016 and 2017, and in 2018 we won the GOLD! Of note, Patagonia Health has also been shortlisted by Silicon Review Magazine’s 50 most innovative products to watch.
+        </p>
+      </div>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <h2>Our Story</h2>
+        <p>It all began when co-founder, Ashok Mathur traveled through South America during a hiatus from his current position at a large, well-known, EHR company. (Patagonia was one of his favorite places – hence our name!) He thought “there has to be a better way.” People want to be treated as people, and deserve to get a quality product that is backed by a high level of product support. They deserve a holistic approach to training and implementation and a vendor that is accessible to them at all times.
+          <p>So, in 2009, upon return from his travels, Ashok approached Abhi Muthiyan with his ideas. With the technical know-how, Abhi worked through the software development process, while Ashok managed the daily business start-up and Patagonia Health became a reality.
+          Patagonia Health was founded with a focus on solving two major user problems: to provide a modern, easy-to-use EHR software, and just as importantly, to provide excellent customer service.
+          </p>
+          <p>  Today we remain true to those founding principles with a goal of 100% customer reference ability, because more than buying software, customers trust us to hold their hand through their transition to electronic health records. We support and recommend industry best practices and share our expertise to help our customers improve.  We are truly a resource for them in every way.</p>
+      </div>
+    </div>
+  </div>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <div class="lates">
+    <div class="container">
+      <div class="text-center">
+        <h2>Latest News</h2>
+      </div>
+      <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <!-- <img src="images/4.jpg" class="img-responsive" /> -->
+        <h3>The Direct Correlation Between EHR Usability and Physician Burnout</h3>
+        <p>Healthcare professionals agree Electronic Health Record (EHR) usability improves their everyday workflow. However, a new study suggests certain features of EHR solutions add unnecessary stress and physician burnout. Clinicians spend approximately half of their time on administrative tasks, according to a study by JAMA Network Open.
+        </p>
+      </div>
+
+      <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <!-- <img src="images/5.jpg" class="img-responsive" /> -->
+        <h3>Inside Behavioral Health: Behavioral Health Terms You Should Know Part 2</h3>
+        <p>We are continuing our series on behavioral health terms you should know! As mentioned in our first blog, this is by no means a comprehensive list of terms. Our hope is that this list of terms, along with Part 1 of the blog series, will develop a more common vocabulary between consumers and providers in ...
+        </p>
+      </div>
+
+      <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
+        <!-- <img src="images/6.jpg" class="img-responsive" /> -->
+        <h3>Mental Health Awareness for more than a Month</h3>
+        <p>May just came to a close, which means Mental Health Awareness Month is also ending. But that doesn’t mean the communication should stop. Or even slow down, for that matter. Mental Health Awareness month has been observed in May since 1949. It’s outreach has touched millions of people through media, local events and screenings.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <section id="conatcat-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="pull-left">
+              <i class="fa fa-phone"></i>
+            </div>
+            <div class="media-body">
+              <h2>Have a question or need a custom quote?</h2>
+              <p>If you have EHR questions or want to learn more about Patagonia Health’s app-based EHR solutions and what we can do for your organization, please fill out the information below. We will contact you shortly.
+
+If you are an existing customer with questions about your EHR system, please email support@patagoniahealth.com.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/#conatcat-info-->
+
+  <footer>
+    <div class="footer">
+      <div class="container">
+        <div class="social-icon">
+          <div class="col-md-4">
+            <ul class="social-network">
+              <li><a href="#" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#" class="gplus tool-tip" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#" class="linkedin tool-tip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#" class="ytube tool-tip" title="You Tube"><i class="fa fa-youtube-play"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+          <div class="copyright">
+            &copy; Patagonia Health. All Rights Reserved.
+            <div class="credits">
+              Designed by <a href="#">Raghav Mathur</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pull-right">
+        <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div  ng-app="app-login" ng-controller="loginController as vm" class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h3 class="modal-title" id="modal-login-label">Physician Login</h3>
+          <p>Enter your username and password to sign in:</p>
+        </div>
+
+        <div class="modal-body">
+          <div class="login-form">
+            <div class="form-group">
+                <input ng-model="vm.email" type="text" placeholder="Username..." class="form-control">
+                <span style="color: red" ng-model="vm.emailError">
+                   {{ vm.emailError }}
+                 </span>
+              </div>
+              <div class="form-group">
+                <input ng-model="vm.password" type="password" placeholder="Password..." class="form-control">
+              </div>
+              <a ng-click="vm.Login()" class="btn btn-primary btn-user btn-block">Login</a>
+              <div class="col-sm-15 mb-7 mb-sm-0">
+                <span style="color: red" ng-model="vm.submitError">
+                   {{ vm.submitError }}
+                 </span>
+              </div>
+              <div>
+                <a href="registration.html"> Create an Account</a>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-migrate.min.js"></script>
+  <script src="js/jquery.prettyPhoto.js"></script>
+  <script src="js/jquery.isotope.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/functions.js"></script>
+
+  <script src="assets/js/jquery-1.11.1.min.js"></script>
+  <!-- Below script is used by login model-->
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.backstretch.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
+
+
 </body>
 
 </html>

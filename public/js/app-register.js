@@ -128,7 +128,7 @@
                   vm.emailError = "";
                   vm.firstNameError = "";
                   vm.lastNameError = "";
-                  vm.submitError = "";
+                  // vm.submitError = "";
                 });
             }
         }
