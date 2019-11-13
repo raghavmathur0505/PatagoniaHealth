@@ -44,13 +44,23 @@ const mLabOpen = async (user, pass, db) => {
   return conn;
 };
 
-
+let models;
+let mongoConnection;
 // sets exithandler when microservice starts
 const start = async () => {
   console.log('starting');
 
   // eslint-disable-next-line no-unused-vars
   const exitHandler = async (options, err) => {
+    try {
+      if (mongoConnection) {
+        console.log('Closing database connection.');
+        // close mongo connection after getting response for every request
+        mongoConnection.disconnect();
+      }
+    } catch (err) {
+      console.log(`Error closing mongo connection: ${err}`);
+    }
     console.log(`Closing: ${options.reason}`);
     process.exit();
   };
@@ -64,6 +74,21 @@ const start = async () => {
   ['exit', 'SIGINT', 'SIGTERM', 'uncaughtException'].forEach((signal) => {
     process.on(signal, exitHandler.bind(null, { reason: signal }));
   });
+
+  try {
+    console.log('Opening database connection.');
+    mongoConnection = await mLabOpen(process.env.MONGODB_USER, process.env.MONGODB_PASS, process.env.MONGODB_NAME);
+
+    const Patient = mongoConnection.model('Patient', patientSchema);
+    const Physician = mongoConnection.model('Physician', physicianSchema);
+    // use mongo models (database objects) in all route handlers
+    models = { Patient, Physician };
+  } catch (e) {
+    // return mongo/vault error (if any) before entering route handlers
+    console.log(e.message);
+    process.exit(1);
+  }
+
 };
 
 
@@ -100,35 +125,26 @@ app.use(hpp());
 
 // Open database connection using the library
 app.use(async (req, res, next) => {
-  let mongoConnection = null;
+  // let mongoConnection = null;
 
   try {
-    console.log('Opening database connection.');
-    mongoConnection = await mLabOpen(process.env.MONGODB_USER, process.env.MONGODB_PASS, process.env.MONGODB_NAME);
-
-    const Patient = mongoConnection.model('Patient', patientSchema);
-    const Physician = mongoConnection.model('Physician', physicianSchema);
-    // use mongo models (database objects) in all route handlers
-    req.models = { Patient, Physician };
+    if (!mongoConnection || !models) {
+      console.log('Opening database connection.');
+      mongoConnection = await mLabOpen(process.env.MONGODB_USER, process.env.MONGODB_PASS, process.env.MONGODB_NAME);
+      const Patient = mongoConnection.model('Patient', patientSchema);
+      const Physician = mongoConnection.model('Physician', physicianSchema);
+      // use mongo models (database objects) in all route handlers
+      req.models = { Patient, Physician };
+    } else {
+      console.log('Using existing database connection.');
+      req.models = models;
+    }
   } catch (err) {
     // return mongo/vault error (if any) before entering route handlers
     next(new Error(err.message));
   }
 
-  // close mongo when res has been sent
-  res.on('finish', () => {
-    try {
-      if (mongoConnection) {
-        console.log('Closing database connection.');
-        // close mongo connection after getting response for every request
-        mongoConnection.disconnect();
-      }
-    } catch (err) {
-      console.log(`Error closing mongo connection: ${err}`);
-    }
-  });
-
-  return next();
+  next();
 });
 
 
@@ -176,10 +192,11 @@ app.use((err, req, res, next) => {
 });
 
 // specifies the root directory from which to serve static assets.
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // Web Application Loading Page
-app.get('*', function(req, res, next) {
+app.get('*', function(req, res) {
+  console.log('Sending file');
   // load the single view file (angular will handle the page changes on the front-end)
   res.sendfile(path.resolve('public/index.html'));
 });
@@ -208,6 +225,15 @@ start()
     );
   })
   .catch((e) => {
+    try {
+      if (mongoConnection) {
+        console.log('Closing database connection.');
+        // close mongo connection after getting response for every request
+        mongoConnection.disconnect();
+      }
+    } catch (err) {
+      console.log(`Error closing mongo connection: ${err}`);
+    }
     e.message = `Error: ${e.message}`;
     console.log(e.message);
     process.exit(1);
