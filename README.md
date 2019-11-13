@@ -17,8 +17,8 @@ Coding Exercise
 - public (Contains code for frontend application)
   - css (contains css files used by html files)
   - js (contains controllers)
-  - index.html (Physician login page)
-  - register.html (Physician registration page)
+  - index.html (Welcome and Physician login page)
+  - registration.html (Physician registration page)
   - dashboard.html (View, create, update and delete patients)
 
 ## Features
@@ -60,6 +60,8 @@ Patient
 ## Frontend
 - The web application is designed using MVC framework (AngularJS)
 - It makes calls to the backend API to interact with Patients and Physician
+- Uses session storage for maintaining user login session between page refreshes
+- Uses bootstrap for creating responsive web pages
 
 ## Technology:
 - The application is developed using MEAN Stack
