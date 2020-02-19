@@ -1,5 +1,4 @@
-# PatagoniaHealth
-Coding Exercise
+# Patient Management System
 
 ## Instruction to run
 - The application is publicly available and can be access via the url
